@@ -1,0 +1,18 @@
+# Macho -- Better Chinese text wrapping
+
+## Installation
+
+Simply include the `macho.js` into your html file.
+
+## Usage
+
+    $('p').macho();  // The default wrapped text will grouped no more than three.
+    $('p').macho(5); // Use five as wrapped text length
+
+## Demo
+
+Open `index.html`, type `$('p').macho()`, resize your browser's width see what's the difference.
+
+## TODO
+
+Better documantation

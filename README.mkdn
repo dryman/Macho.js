@@ -11,8 +11,12 @@ Simply include the `macho.js` into your html file.
 
 ## Demo
 
-Open `index.html`, type `$('p').macho()`, resize your browser's width see what's the difference.
+Open `index.html`, type `$('p').macho()`, resize your browser's width and see what's the difference.
 
 ## TODO
 
 Better documantation
+
+## License
+
+BSD license

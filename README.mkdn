@@ -1,4 +1,4 @@
-# Macho -- Better CJK text wrapping
+# Macho.js - Better CJK text wrapping  V0.11
 
 Text wrapping in Chinese or other CJK languages are not as easy as in latin based
 languages. For example, you may have seen this in a block of text or h1, h2

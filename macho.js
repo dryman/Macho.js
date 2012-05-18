@@ -4,7 +4,7 @@
     var puncs_reg = new RegExp("[-,_\\|<.>/?;:'\"`~!@#$%&*()（）‧´・ωつдС；∀ﾟo彡★☆▽￣╮╭ノ╰〒皿～┴‵□′↗︴yΦθ↖，。？！：；＠m＃＄％︿＆＊＝＋╰╯崩潰艸凸∩＿ˍ▁▂▃▄▅▆▇◣◎█◢^]+$");
 
     // TODO: need to reset if there is already <span class='macho'> tags in html
-    // TODO: handle special characters like &amp
+    // TODO: If there are some regexp strings in acc, there will be a problem
     var genReg = function (acc, len, html){
       if (len === 0) {
         return new RegExp(acc);
@@ -34,7 +34,9 @@
       
 
     this.each(function(idx){
-      var punc = $(this).html().match(puncs_reg); // faild if end with </em> or </strong>
+      if ($(this).html().match(/</)) return true; // do nothing if other tags are found.
+
+      var punc = $(this).html().match(puncs_reg); 
       if (punc!=null && punc[0].length > 3) 
         return $(this).html($(this).html().replace(puncs_reg,output)) || true; // works like continue
 

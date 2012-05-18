@@ -1,10 +1,18 @@
 (function( $ ) {
-  $.fn.macho = function (len) {
-    len = len || 3;
-    var puncs_reg = new RegExp("[-,_\\|<.>/?;:'\"`~!@#$%&*()（）‧´・ωつдС；∀ﾟo彡★☆▽￣╮╭ノ╰〒皿～┴‵□′↗︴yΦθ↖，。？！：；＠m＃＄％︿＆＊＝＋╰╯崩潰艸凸∩＿ˍ▁▂▃▄▅▆▇◣◎█◢^]+$");
+  $.fn.macho = function (options) {
+    var settings = $.extend({
+      'length': 3,
+      'inline': true
+    }, options);
+    len = settings.length;
+    var output = settings.inline ? 
+      "<span class='macho' style='display: inline-block;'>$&</span>" :
+      "<span class='macho'>$&</span>";
 
     // TODO: need to reset if there is already <span class='macho'> tags in html
     // TODO: If there are some regexp strings in acc, there will be a problem
+    // TODO: Should use XRegExp module and there is regexp escape function that
+    // can solve the problem
     var genReg = function (acc, len, html){
       if (len === 0) {
         return new RegExp(acc);
@@ -12,7 +20,7 @@
       else {
         /* res[1] = ((\w+)|(&\w{1,5};))
          * res[2] = (\w+)
-         * res[3] = (&\w{1,5};)
+         * res[3] = (&\w{1,5};)  // will faild if there is '#' in \w
          */
         var reg = new RegExp("((\\w+)|(&\\w{1,5};))"+acc); 
         var res = reg.exec(html);
@@ -30,9 +38,9 @@
         }
       }
     };
-    var output = "<span class='macho' style='display: inline-block;'>$&</span>";
       
 
+    var puncs_reg = new RegExp("[-,_\\|<.>/?;:'\"`~!@#$%&*()（）‧´・ωつдС；∀ﾟo彡★☆▽￣╮╭ノ╰〒皿～┴‵□′↗︴yΦθ↖，。？！：；＠m＃＄％︿＆＊＝＋╰╯崩潰艸凸∩＿ˍ▁▂▃▄▅▆▇◣◎█◢^]+$");
     this.each(function(idx){
       if ($(this).html().match(/</)) return true; // do nothing if other tags are found.
 

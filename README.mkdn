@@ -4,10 +4,11 @@
 
 Simply include the `macho.js` into your html file.
 
+
 ## Usage
 
     $('p').macho();  // The default wrapped text will grouped no more than three.
-    $('p').macho(5); // Use five as wrapped text length
+    $('p').macho({'length':5}); // Use five as wrapped text length
 
 ## Demo
 

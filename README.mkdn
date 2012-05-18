@@ -28,7 +28,7 @@ wrapping.
 The following examples will only wrap when the width is too small to hold the
 entire strings.
 
-### Three characters followed by a Chinese period
+### Last Chinese characters will be grouped in 3 (can be customized in option)
 
     寫起來以後自己參考。
     -->
@@ -49,7 +49,7 @@ entire strings.
     這個plugin真的是太
     棒了ya!
 
-### Emotional characters will be wrapped as whole
+### Emotion symbols will be wrapped as whole
 
     這亂七八糟◢▆▅▄▃崩╰(〒皿〒)╯潰▃▄▅▇◣
     -->
@@ -64,12 +64,16 @@ entire strings.
 
     $('p').macho({
       'length':5,      // Wrapped text grouped to 5 CJK characters
-      'inline': false  // Generate <span class="macho"> ... </span> instead of
+      'inline': false  // Generate <span class="macho"> instead of
     });                // <span class="macho" style="display: inline-block;">
 
 ## Installation
 
 Simply include `macho.js` into your html file.
+
+## Author
+
+Felix Ren-Chyan Chern 陳仁乾(idryman)
 
 ## License
 

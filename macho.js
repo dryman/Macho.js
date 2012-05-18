@@ -20,7 +20,7 @@
       else {
         /* res[1] = ((\w+)|(&\w{1,5};))
          * res[2] = (\w+)
-         * res[3] = (&\w{1,5};)  // will faild if there is '#' in \w
+         * res[3] = (&\w{1,5};)  // will fail if there is '#' in \w
          */
         var reg = new RegExp("((\\w+)|(&\\w{1,5};))"+acc); 
         var res = reg.exec(html);
@@ -28,8 +28,8 @@
           if (res[2] != null && res[2].length > 3) { // Length of (\w+) > 3
             return reg;
           } else {
-            // Short word or html escaped caracter are treated as one wide
-            // caracter (like one Chinese caracter)
+            // Short word or html escaped character are treated as one wide
+            // character (like one Chinese character)
             return genReg(res[0]+"$", --len, html); 
           }
         } else {

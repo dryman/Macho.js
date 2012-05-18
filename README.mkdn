@@ -1,22 +1,75 @@
-# Macho -- Better Chinese text wrapping
+# Macho -- Better CJK text wrapping
+
+Text wrapping in Chinese or other CJK languages are not as easy as in latin based
+languages. For example, you may have seen this in a block of text or h1, h2
+title:
+
+    不 costdown 才會不浪費，才能得到好東
+    西。
+
+This is quite ugly. It should be re-wrapped to this:
+
+    不 costdown 才會不浪費，才能得到
+    好東西。
+
+In order to do this, we can use `<span style="display: inline-block;">` to tag
+the last three Chinese characters to achieve the goal. This is exactly what
+**Macho.js** brings to you, in flavor of jQuery's way.
+
+Macho.js is a jQuery plugin. The interface is simple:
+
+    $('p').macho();
+
+Then Macho.js will scan through all the tags you passed to it and do the
+wrapping.
+
+## Wrap rules and examples
+
+The following examples will only wrap when the width is too small to hold the
+entire strings.
+
+### Three characters followed by a Chinese period
+
+    寫起來以後自己參考。
+    -->
+    寫起來以後自
+    己參考。      
+
+### Long English word will be wrapped, no need to wrap Chinese with it
+
+    我喜歡使用photoshop.
+    -->
+    我喜歡使用
+    photoshop.    
+
+### Short English word will be treated as Chinese characters
+
+    這個plugin真的是太棒了ya!
+    -->
+    這個plugin真的是太
+    棒了ya!
+
+### Emotional characters will be wrapped as whole
+
+    這亂七八糟◢▆▅▄▃崩╰(〒皿〒)╯潰▃▄▅▇◣
+    -->
+    這亂七八糟
+    ◢▆▅▄▃崩╰(〒皿〒)╯潰▃▄▅▇◣
+
+## Usage and API
+
+    /* include macho.js in your html header */
+
+    $('p').macho();    // Wrapped text default grouped to 3 CJK characters
+
+    $('p').macho({
+      'length':5,      // Wrapped text grouped to 5 CJK characters
+      'inline': false  // Generate <span class="macho"> ... </span> instead of
+    });                // <span class="macho" style="display: inline-block;">
 
 ## Installation
 
-Simply include the `macho.js` into your html file.
-
-
-## Usage
-
-    $('p').macho();  // The default wrapped text will grouped no more than three.
-    $('p').macho({'length':5}); // Use five as wrapped text length
-
-## Demo
-
-Open `index.html`, type `$('p').macho()`, resize your browser's width and see what's the difference.
-
-## TODO
-
-Better documantation
+Simply include `macho.js` into your html file.
 
 ## License
 

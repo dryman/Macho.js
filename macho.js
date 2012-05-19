@@ -9,10 +9,9 @@
       "<span class='macho' style='display: inline-block;'>$&</span>" :
       "<span class='macho'>$&</span>";
 
-    // TODO: need to reset if there is already <span class='macho'> tags in html
-    // TODO: If there are some regexp strings in acc, there will be a problem
-    // TODO: Should use XRegExp module and there is regexp escape function that
-    // can solve the problem
+    var reg_escape = function (str) {
+      return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    }
     var genReg = function (acc, len, html){
       if (len === 0) {
         return new RegExp(acc);
@@ -30,7 +29,7 @@
           } else {
             // Short word or html escaped character are treated as one wide
             // character (like one Chinese character)
-            return genReg(res[0]+"$", --len, html); 
+            return genReg(reg_escape(res[0])+"$", --len, html); 
           }
         } else {
             // Add one non ascii charater to accumulator
@@ -48,7 +47,7 @@
       if (punc!=null && punc[0].length > 3) 
         return $(this).html($(this).html().replace(puncs_reg,output)) || true; // works like continue
 
-      var reg = genReg(punc+"$", len, $(this).html());
+      var reg = genReg(reg_escape(punc[0])+"$", len, $(this).html());
       return $(this).html($(this).html().replace(reg,output)) || true;
 
     });

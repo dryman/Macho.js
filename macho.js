@@ -1,3 +1,9 @@
+/* Macho.js - Better CJK text wrapping V0.3 (Beta)
+ * https://github.com/dryman/Macho.js
+ * Author Felix Ren-Chyan Chern (idryman)
+ * BSD License 
+ */
+
 (function( $ ) {
   $.fn.macho = function (options) {
     var settings = $.extend({
@@ -47,7 +53,8 @@
       if (punc!=null && punc[0].length > 3) 
         return $(this).html($(this).html().replace(puncs_reg,output)) || true; // works like continue
 
-      var reg = genReg(reg_escape(punc[0])+"$", len, $(this).html());
+      var acc = punc != null ?  reg_escape(punc[0]) + "$" : "$";
+      var reg = genReg(acc, len, $(this).html());
       return $(this).html($(this).html().replace(reg,output)) || true;
 
     });

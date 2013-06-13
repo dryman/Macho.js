@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Macho.js by dryman</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/dryman/Macho.js">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Macho.js</h1>
+            <h2>Better CJK text wrapping</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/dryman/Macho.js/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/dryman/Macho.js/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a name="machojs---better-cjk-text-wrapping--v031" class="anchor" href="#machojs---better-cjk-text-wrapping--v031"><span class="octicon octicon-link"></span></a>Macho.js - Better CJK text wrapping  V0.31</h1>
+
+<p>Text wrapping in Chinese or other CJK languages are not as easy as in latin based
+languages. For example, you may have seen this in a block of text or h1, h2
+title:</p>
+
+<pre><code>不 costdown 才會不浪費，才能得到好東
+西。
+</code></pre>
+
+<p>This is quite ugly. It should be re-wrapped to this:</p>
+
+<pre><code>不 costdown 才會不浪費，才能得到
+好東西。
+</code></pre>
+
+<p>In order to do this, we can use <code>&lt;span style="display: inline-block;"&gt;</code> to tag
+the last three Chinese characters to achieve the goal. This is exactly what
+<strong>Macho.js</strong> brings to you, in flavor of jQuery's way.</p>
+
+<p>Macho.js is a jQuery plugin. The interface is simple:</p>
+
+<pre><code>$('p').macho();
+</code></pre>
+
+<p>Then Macho.js will scan through all the tags you passed to it and do the
+wrapping.</p>
+
+<h2>
+<a name="wrap-rules-and-examples" class="anchor" href="#wrap-rules-and-examples"><span class="octicon octicon-link"></span></a>Wrap rules and examples</h2>
+
+<p>The following examples will only wrap when the width is too small to hold the
+entire strings.</p>
+
+<h3>
+<a name="last-chinese-characters-will-be-grouped-in-3-can-be-customized-in-option" class="anchor" href="#last-chinese-characters-will-be-grouped-in-3-can-be-customized-in-option"><span class="octicon octicon-link"></span></a>Last Chinese characters will be grouped in 3 (can be customized in option)</h3>
+
+<pre><code>寫起來以後自己參考。
+--&gt;
+寫起來以後自
+己參考。      
+</code></pre>
+
+<h3>
+<a name="long-english-word-will-be-wrapped-no-need-to-wrap-chinese-with-it" class="anchor" href="#long-english-word-will-be-wrapped-no-need-to-wrap-chinese-with-it"><span class="octicon octicon-link"></span></a>Long English word will be wrapped, no need to wrap Chinese with it</h3>
+
+<pre><code>我喜歡使用photoshop.
+--&gt;
+我喜歡使用
+photoshop.    
+</code></pre>
+
+<h3>
+<a name="short-english-word-will-be-treated-as-chinese-characters" class="anchor" href="#short-english-word-will-be-treated-as-chinese-characters"><span class="octicon octicon-link"></span></a>Short English word will be treated as Chinese characters</h3>
+
+<pre><code>這個plugin真的是太棒了ya!
+--&gt;
+這個plugin真的是太
+棒了ya!
+</code></pre>
+
+<h3>
+<a name="emotion-symbols-will-be-wrapped-as-whole" class="anchor" href="#emotion-symbols-will-be-wrapped-as-whole"><span class="octicon octicon-link"></span></a>Emotion symbols will be wrapped as whole</h3>
+
+<pre><code>這亂七八糟◢▆▅▄▃崩╰(〒皿〒)╯潰▃▄▅▇◣
+--&gt;
+這亂七八糟
+◢▆▅▄▃崩╰(〒皿〒)╯潰▃▄▅▇◣
+</code></pre>
+
+<h2>
+<a name="usage-and-api" class="anchor" href="#usage-and-api"><span class="octicon octicon-link"></span></a>Usage and API</h2>
+
+<pre><code>/* include macho.js in your html header */
+
+$('p').macho();    // Wrapped text default grouped to 3 CJK characters
+
+$('p').macho({
+  'length':5,      // Wrapped text grouped to 5 CJK characters
+  'inline': false  // Generate &lt;span class="macho"&gt; instead of
+});                // &lt;span class="macho" style="display: inline-block;"&gt;
+</code></pre>
+
+<h2>
+<a name="installation-and-compatibilities" class="anchor" href="#installation-and-compatibilities"><span class="octicon octicon-link"></span></a>Installation and compatibilities</h2>
+
+<p>Simply include <code>macho.js</code> into your html file. Remember to set your html
+encoding to <strong>utf8</strong>. </p>
+
+<h2>
+<a name="bugs-and-todos" class="anchor" href="#bugs-and-todos"><span class="octicon octicon-link"></span></a>Bugs and todos</h2>
+
+<ul>
+<li><p>Custom <code>span</code> and class name?</p></li>
+<li><p>If there is other tags like <code>&lt;strong&gt;</code> <code>&lt;em&gt;</code>, macho.js won't process them</p></li>
+</ul><h2>
+<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<p>Felix Ren-Chyan Chern 陳仁乾(idryman)</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>BSD license</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/dryman">dryman</a> can be found on <a href="https://github.com/dryman/Macho.js">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
